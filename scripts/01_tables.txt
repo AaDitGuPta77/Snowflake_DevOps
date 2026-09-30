@@ -9,3 +9,4 @@ CREATE TABLE IF NOT EXISTS tbl_customers (
     created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 -- Deployment trigger test: Wed Sep 30 16:51:37 IST 2026
+-- Deployment trigger test - try 2: Wed Sep 30 16:55:42 IST 2026
