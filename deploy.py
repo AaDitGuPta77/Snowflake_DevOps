@@ -25,8 +25,7 @@ def run_deployment():
         private_key=get_private_key(),
         warehouse=os.environ['SNF_WAREHOUSE'],
         database=os.environ['SNF_DATABASE'],
-        schema=os.environ['SNF_SCHEMA'],
-        role=os.environ.get('SNF_ROLE', 'DATA_ENGINEER')
+        schema=os.environ['SNF_SCHEMA']
     )
 
     # Scans 'scripts/' folder
