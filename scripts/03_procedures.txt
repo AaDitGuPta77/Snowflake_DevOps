@@ -1,0 +1,16 @@
+CREATE OR REPLACE PROCEDURE sp_get_total_completed_sales()
+RETURNS NUMBER(12,2)
+LANGUAGE SQL
+AS
+$$
+DECLARE
+    total_sales NUMBER(12,2);
+BEGIN
+    SELECT COALESCE(SUM(order_amount), 0)
+    INTO :total_sales
+    FROM tbl_orders
+    WHERE order_status = 'COMPLETED';
+
+    RETURN :total_sales;
+END;
+$$;

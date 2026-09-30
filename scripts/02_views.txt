@@ -1,0 +1,8 @@
+CREATE OR REPLACE VIEW vw_high_value_orders AS
+SELECT 
+    order_id,
+    customer_name,
+    order_amount,
+    created_at
+FROM tbl_orders
+WHERE order_amount > 500;
