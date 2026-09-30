@@ -19,3 +19,4 @@ VALUES
     ('Aadit Gupta', 1200.50, 'COMPLETED'),
     ('Rahul Sharma', 450.00, 'PENDING'),
     ('Priya Patel', 890.00, 'COMPLETED');
+-- Trigger run: Wed Sep 30 17:44:17 IST 2026
