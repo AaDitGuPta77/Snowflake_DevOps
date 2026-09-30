@@ -10,6 +10,7 @@ on:
 jobs:
   deploy-to-snowflake:
     runs-on: ubuntu-latest
+    environment: Snf-Verification
 
     steps:
       - name: Checkout Code
