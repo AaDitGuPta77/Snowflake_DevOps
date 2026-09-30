@@ -26,12 +26,12 @@ jobs:
 
       - name: Execute Deployment
         env:
-          SNOWFLAKE_ACCOUNT: ${{ secrets.SNF_ACCOUNT }}
-          SNOWFLAKE_USER: ${{ secrets.SNF_USER }}
-          SNOWFLAKE_PRIVATE_KEY: ${{ secrets.SNF_PRIVATE_KEY }}
-          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNF_WAREHOUSE }}
-          SNOWFLAKE_DATABASE: ${{ secrets.SNF_DATABASE }}
-          SNOWFLAKE_SCHEMA: ${{ secrets.SNF_SCHEMA }}
-          SNOWFLAKE_ROLE: ${{ secrets.SNF_ROLE }}
+          SNF_ACCOUNT: ${{ secrets.SNF_ACCOUNT }}
+          SNF_USER: ${{ secrets.SNF_USER }}
+          SNF_PRIVATE_KEY: ${{ secrets.SNF_PRIVATE_KEY }}
+          SNF_WAREHOUSE: ${{ secrets.SNF_WAREHOUSE }}
+          SNF_DATABASE: ${{ secrets.SNF_DATABASE }}
+          SNF_SCHEMA: ${{ secrets.SNF_SCHEMA }}
+          SNF_ROLE: ${{ secrets.SNF_ROLE }}
         run: |
           python deploy.py
