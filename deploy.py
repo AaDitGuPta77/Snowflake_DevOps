@@ -45,7 +45,7 @@ def run_deployment():
         if not sql_script:
             continue
 
-        for cur in conn.cursor().execute_string(sql_script):
+        for cur in conn.execute_string(sql_script):
             print(f"Status: {cur.statusmessage}")
 
     conn.close()
