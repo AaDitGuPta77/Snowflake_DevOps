@@ -45,7 +45,8 @@ def run_deployment():
         if not sql_script:
             continue
 
-        for cur in conn.execute_string(sql_script):
+        # remove_comments=True strips comments and empty semicolons that cause 'Empty SQL statement'
+        for cur in conn.execute_string(sql_script, remove_comments=True):
             for row in cur.fetchall():
                 print(f"Result: {row[0]}")
 
