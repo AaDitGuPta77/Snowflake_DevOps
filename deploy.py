@@ -25,10 +25,10 @@ def run_deployment():
         private_key=get_private_key(),
         warehouse=os.environ['SNF_WAREHOUSE'],
         database=os.environ['SNF_DATABASE'],
-        schema=os.environ['SNF_SCHEMA']
+        schema=os.environ['SNF_SCHEMA'],
+        role=os.environ.get('SNF_ROLE')
     )
 
-    # Scans 'scripts/' folder
     script_files = sorted(glob.glob("scripts/*.txt") + glob.glob("scripts/*.sql"))
     if not script_files:
         print("No script files found in scripts/ folder.")
@@ -46,7 +46,8 @@ def run_deployment():
             continue
 
         for cur in conn.execute_string(sql_script):
-            print(f"Status: {cur.statusmessage}")
+            for row in cur.fetchall():
+                print(f"Result: {row[0]}")
 
     conn.close()
     print("\nAll scripts executed successfully!")
