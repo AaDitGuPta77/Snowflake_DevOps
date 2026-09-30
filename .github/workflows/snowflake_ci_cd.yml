@@ -1,0 +1,37 @@
+name: Snowflake CI-CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/**'
+
+jobs:
+  deploy-to-snowflake:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Snowflake Connector & Cryptography
+        run: |
+          pip install snowflake-connector-python cryptography
+
+      - name: Execute Deployment
+        env:
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNF_ACCOUNT }}
+          SNOWFLAKE_USER: ${{ secrets.SNF_USER }}
+          SNOWFLAKE_PRIVATE_KEY: ${{ secrets.SNF_PRIVATE_KEY }}
+          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNF_WAREHOUSE }}
+          SNOWFLAKE_DATABASE: ${{ secrets.SNF_DATABASE }}
+          SNOWFLAKE_SCHEMA: ${{ secrets.SNF_SCHEMA }}
+          SNOWFLAKE_ROLE: ${{ secrets.SNF_ROLE }}
+        run: |
+          python deploy.py
