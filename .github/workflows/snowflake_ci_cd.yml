@@ -11,7 +11,6 @@ on:
 jobs:
   deploy-to-snowflake:
     runs-on: ubuntu-latest
-    # Steps 4, 5, 6: Dashboard pause waiting for both head approvals
     environment: production
 
     steps:
@@ -26,8 +25,7 @@ jobs:
       - name: Install Dependencies
         run: pip install snowflake-connector-python cryptography
 
-      # Steps 7 & 9: Execute scripts in sequence and run data validation
-      - name: Execute Deployment & Validate Data
+      - name: Execute Deployment and Validate Data
         env:
           SNF_ACCOUNT: ${{ secrets.SNF_ACCOUNT }}
           SNF_USER: ${{ secrets.SNF_USER }}
@@ -38,16 +36,10 @@ jobs:
           SNF_ROLE: ${{ secrets.SNF_ROLE }}
         run: python deploy.py
 
-      # Step 8: Error alert sent to developer if deployment or validation fails
-      - name: Step 8: Alert Email to Dev (On Failure)
+      - name: Step 8 Alert on Failure
         if: failure()
-        run: |
-          echo "::error::Deployment run failed. An alert has been dispatched with error details."
-          echo "Developer action required: Inspect logs, fix scripts, and redeploy."
+        run: echo "Deployment failed during script execution or validation."
 
-      # Step 10: Final success notification and request closure
-      - name: Step 10: Email Developer: Deployed (Close Request)
+      - name: Step 10 Notify Success
         if: success()
-        run: |
-          echo "Deployment and data validation completed successfully."
-          echo "Notification sent to developer. Change request closed."
+        run: echo "Deployment and validation completed successfully."
