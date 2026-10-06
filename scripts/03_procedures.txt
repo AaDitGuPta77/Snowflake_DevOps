@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE sp_get_total_completed_sales()
+CREATE OR REPLACE PROCEDURE dev_db.public.sp_get_total_completed_sales()
 RETURNS NUMBER(12,2)
 LANGUAGE SQL
 AS
@@ -8,7 +8,7 @@ DECLARE
 BEGIN
     SELECT COALESCE(SUM(order_amount), 0)
     INTO :total_sales
-    FROM tbl_orders
+    FROM dev_db.public.tbl_orders
     WHERE order_status = 'COMPLETED';
 
     RETURN :total_sales;
