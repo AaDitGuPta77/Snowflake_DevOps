@@ -14,18 +14,18 @@ jobs:
     environment: production
 
     steps:
-      - name: "Checkout Code"
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: "Set up Python"
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: "Install Dependencies"
+      - name: Install Dependencies
         run: pip install snowflake-connector-python cryptography
 
-      - name: "Execute Deployment and Validate Data"
+      - name: Execute Deployment and Validate Data
         env:
           SNF_ACCOUNT: ${{ secrets.SNF_ACCOUNT }}
           SNF_USER: ${{ secrets.SNF_USER }}
@@ -36,14 +36,10 @@ jobs:
           SNF_ROLE: ${{ secrets.SNF_ROLE }}
         run: python deploy.py
 
-      - name: "Step 8: Alert Email to Dev (On Failure)"
+      - name: Step 8 Alert on Failure
         if: failure()
-        run: |
-          echo "Deployment run failed. An alert has been dispatched with error details."
-          echo "Developer action required: Inspect logs, fix scripts, and redeploy."
+        run: echo "Deployment failed during script execution or validation."
 
-      - name: "Step 10: Email Developer: Deployed (Close Request)"
+      - name: Step 10 Notify Success
         if: success()
-        run: |
-          echo "Deployment and data validation completed successfully."
-          echo "Notification sent to developer. Change request closed."
+        run: echo "Deployment and validation completed successfully."
