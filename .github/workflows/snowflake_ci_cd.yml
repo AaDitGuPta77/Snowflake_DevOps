@@ -11,7 +11,7 @@ on:
 jobs:
   deploy-to-snowflake:
     runs-on: ubuntu-latest
-    environment: production
+    environment: Snf-Verification
 
     steps:
       - name: Checkout Code
