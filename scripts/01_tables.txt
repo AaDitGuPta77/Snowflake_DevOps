@@ -1,4 +1,4 @@
-CREATE OR REPLACE TABLE dev_db.public.tbl_orders (
+CREATE OR REPLACE TABLE tbl_orders (
     order_id NUMBER(38,0) AUTOINCREMENT,
     customer_name STRING,
     order_amount NUMBER(10,2),
@@ -7,7 +7,7 @@ CREATE OR REPLACE TABLE dev_db.public.tbl_orders (
     created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
-CREATE OR REPLACE TABLE dev_db.public.tbl_customers (
+CREATE OR REPLACE TABLE tbl_customers (
     customer_id NUMBER(38,0) AUTOINCREMENT,
     first_name STRING,
     last_name STRING,
@@ -15,7 +15,7 @@ CREATE OR REPLACE TABLE dev_db.public.tbl_customers (
     created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
-INSERT INTO dev_db.public.tbl_orders (customer_name, order_amount, order_status, priority_level)
+INSERT INTO tbl_orders (customer_name, order_amount, order_status, priority_level)
 VALUES 
     ('Aadit Gupta', 1500.00, 'COMPLETED', 'HIGH'),
     ('Rahul Sharma', 320.00, 'PENDING', 'STANDARD'),
