@@ -2,8 +2,10 @@ CREATE OR REPLACE TABLE tbl_orders (
     order_id NUMBER(38,0) AUTOINCREMENT,
     customer_name STRING,
     order_amount NUMBER(10,2),
+    discount_amount NUMBER(10,2) DEFAULT 0.00,
     order_status STRING,
     priority_level STRING DEFAULT 'STANDARD',
+    payment_method STRING DEFAULT 'CREDIT_CARD',
     created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
@@ -13,18 +15,20 @@ CREATE OR REPLACE TABLE tbl_customers (
     last_name STRING,
     email STRING,
     account_status STRING DEFAULT 'ACTIVE',
+    loyalty_tier STRING DEFAULT 'BRONZE',
     created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
-INSERT INTO tbl_orders (customer_name, order_amount, order_status, priority_level)
+INSERT INTO tbl_orders (customer_name, order_amount, discount_amount, order_status, priority_level, payment_method)
 VALUES 
-    ('Aadit Gupta', 2100.00, 'COMPLETED', 'HIGH'),
-    ('Rahul Sharma', 750.50, 'PENDING', 'STANDARD'),
-    ('Priya Patel', 3400.00, 'COMPLETED', 'URGENT'),
-    ('Ananya Iyer', 180.25, 'COMPLETED', 'STANDARD');
+    ('Aadit Gupta', 2500.00, 250.00, 'COMPLETED', 'URGENT', 'UPI'),
+    ('Rahul Sharma', 890.00, 50.00, 'PENDING', 'STANDARD', 'NET_BANKING'),
+    ('Priya Patel', 4100.50, 400.00, 'COMPLETED', 'HIGH', 'CREDIT_CARD'),
+    ('Vikram Mehta', 620.00, 0.00, 'COMPLETED', 'STANDARD', 'DEBIT_CARD');
 
-INSERT INTO tbl_customers (first_name, last_name, email, account_status)
+INSERT INTO tbl_customers (first_name, last_name, email, account_status, loyalty_tier)
 VALUES
-    ('Aadit', 'Gupta', 'aadit@example.com', 'ACTIVE'),
-    ('Rahul', 'Sharma', 'rahul@example.com', 'ACTIVE'),
-    ('Priya', 'Patel', 'priya@example.com', 'ACTIVE');
+    ('Aadit', 'Gupta', 'aadit@example.com', 'ACTIVE', 'PLATINUM'),
+    ('Rahul', 'Sharma', 'rahul@example.com', 'ACTIVE', 'SILVER'),
+    ('Priya', 'Patel', 'priya@example.com', 'ACTIVE', 'GOLD'),
+    ('Vikram', 'Mehta', 'vikram@example.com', 'ACTIVE', 'BRONZE');

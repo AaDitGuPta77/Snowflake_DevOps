@@ -3,7 +3,11 @@ SELECT
     order_id,
     customer_name,
     order_amount,
+    discount_amount,
+    (order_amount - discount_amount) AS net_order_amount,
+    order_status,
     priority_level,
+    payment_method,
     created_at
 FROM tbl_orders
 WHERE order_amount > 500;
