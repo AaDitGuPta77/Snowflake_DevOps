@@ -3,6 +3,7 @@ CREATE OR REPLACE TABLE dev_db.public.tbl_orders (
     customer_name STRING,
     order_amount NUMBER(10,2),
     order_status STRING,
+    priority_level STRING DEFAULT 'STANDARD',
     created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
@@ -14,7 +15,8 @@ CREATE OR REPLACE TABLE dev_db.public.tbl_customers (
     created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
-INSERT INTO dev_db.public.tbl_orders (customer_name, order_amount, order_status)
+INSERT INTO dev_db.public.tbl_orders (customer_name, order_amount, order_status, priority_level)
 VALUES 
-    ('Aadit Gupta', 1200.50, 'COMPLETED'),
-    ('Rahul Sharma', 450.00, 'PENDING');
+    ('Aadit Gupta', 1500.00, 'COMPLETED', 'HIGH'),
+    ('Rahul Sharma', 320.00, 'PENDING', 'STANDARD'),
+    ('Priya Patel', 2450.75, 'COMPLETED', 'URGENT');

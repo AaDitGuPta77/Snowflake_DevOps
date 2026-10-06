@@ -3,6 +3,7 @@ SELECT
     order_id,
     customer_name,
     order_amount,
+    priority_level,
     created_at
 FROM dev_db.public.tbl_orders
 WHERE order_amount > 500;
