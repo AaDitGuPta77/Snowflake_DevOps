@@ -17,6 +17,6 @@ CREATE OR REPLACE TABLE tbl_customers (
 
 INSERT INTO tbl_orders (customer_name, order_amount, order_status, priority_level)
 VALUES 
-    ('Aadit Gupta', 1500.00, 'COMPLETED', 'HIGH'),
-    ('Rahul Sharma', 320.00, 'PENDING', 'STANDARD'),
-    ('Priya Patel', 2450.75, 'COMPLETED', 'URGENT');
+    ('Aadit Gupta', 1850.00, 'COMPLETED', 'HIGH'),
+    ('Rahul Sharma', 410.00, 'PENDING', 'STANDARD'),
+    ('Priya Patel', 2900.50, 'COMPLETED', 'URGENT');
